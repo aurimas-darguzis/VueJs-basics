@@ -8,16 +8,24 @@
     </head>
     <body>
         <div id="app">
-            <h1 v-once>{{ title }}</h1>       
-            <p>{{ sayHello() }} - <a v-bind:href="link">Google</a></p>
+            <div class="1st-bit">
+                <h1 v-once>{{ title }}</h1>       
+                <p>{{ sayHello() }} - <a v-bind:href="link">Google</a></p>
+                <hr>
+                <p v-html="finishedLink"></p>
+            </div>
             <hr>
-            <p v-html="finishedLink"></p>
-
-            <hr>
-            <h2>Events</h2>
-            <button v-on:click="increase(2, $event)"> Click me</button>
-            <p>{{ counter }}</p>
-            <p v-on:mousemove="updateCoordinates">Coordinates: {{ x }} / {{ y }}</p>
+            <div class="2nd-bit">
+                <h2>Events</h2>
+                <button v-on:click="increase(2, $event)"> Click me</button>
+                <p>{{ counter }}</p>
+                <p v-on:mousemove="updateCoordinates">
+                    Coordinates: {{ x }} / {{ y }}
+                    - <span v-on:mousemove.stop="">DEAD SPOT</span>
+                </p>
+                <input type="text" v-on:keyup.enter.space="alertMe">
+            </div>
+            
         </div>
         
         
@@ -45,6 +53,9 @@
                 updateCoordinates: function (event) {
                     this.x = event.clientX;
                     this.y = event.clientY;
+                },
+                alertMe: function() {
+                    alert('Alert!');
                 }
             }
         })
