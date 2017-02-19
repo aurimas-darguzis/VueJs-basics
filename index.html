@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="./vue.js"></script>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <div id="app">
@@ -33,7 +34,6 @@
                 <input type="text" v-model="name">
                 <p>{{ name }}</p>
             </div>
-
             <hr>
             <div class="reacting-to-changes">
                 <button @click="counter++">increase</button>
@@ -42,9 +42,23 @@
                 <p>Counter: {{ counter }} | {{ secondCounter }}</p>
                 <p>Result: {{ result() }} | {{ output }}</p>
             </div>
+            <hr>
+            <div class="styling">
+                <div 
+                    class="demo" 
+                    @click="attachRed = !attachRed"
+                    :class="divClasses"></div>
+                <div class="demo" :class="{red: attachRed}"></div>
+                <div class="demo" :class="[color, {red: attachRed}]"></div>
+                <hr>
+                <input type="text" v-model="color">
+                <input type="text" v-model="width">
+                <hr>
+                <div class="demo" :style="{backgroundColor: color}"></div>
+                <div class="demo" :style="myStyle"></div>
+                <div class="demo" :style="[myStyle, {height: width + 'px'}]"></div>
+            </div>
         </div>
-        
-        
     
     </body>
     <script>
@@ -58,7 +72,10 @@
                 counter: 0,
                 secondCounter: 0,
                 x: 0,
-                y: 0
+                y: 0,
+                attachRed: false,
+                color: 'gray',
+                width: 100
             },
             methods: {
                 sayHello: function () {
@@ -82,6 +99,18 @@
             computed: {
                 output: function() {
                     return this.counter > 5 ? 'Greater 5' : 'Smaller than 5';
+                },
+                divClasses: function() {
+                    return {
+                        red: this.attachRed,
+                        blue: !this.attachRed
+                    };
+                },
+                myStyle: function() {
+                    return {
+                        backgroundColor: this.color,
+                        width: this.width + 'px'
+                    };
                 }
             },
             watch: {
