@@ -11,6 +11,8 @@
             <div class="1st-bit">
                 <h1 v-once>{{ title }}</h1>       
                 <p>{{ sayHello() }} - <a v-bind:href="link">Google</a></p>
+                <br>
+                <a :href="link">Google</a></p>
                 <hr>
                 <p v-html="finishedLink"></p>
             </div>
@@ -31,7 +33,15 @@
                 <input type="text" v-model="name">
                 <p>{{ name }}</p>
             </div>
-            
+
+            <hr>
+            <div class="reacting-to-changes">
+                <button @click="counter++">increase</button>
+                <button v-on:click="counter--">decrease</button>
+                <button v-on:click="secondCounter++">Increase second</button>
+                <p>Counter: {{ counter }} | {{ secondCounter }}</p>
+                <p>Result: {{ result() }} | {{ output }}</p>
+            </div>
         </div>
         
         
@@ -46,6 +56,7 @@
                 link: 'http://google.com',
                 finishedLink: '<a href="http://google.com">Google</a>',
                 counter: 0,
+                secondCounter: 0,
                 x: 0,
                 y: 0
             },
@@ -63,6 +74,22 @@
                 },
                 alertMe: function() {
                     alert('Alert!');
+                },
+                result: function() {
+                    return this.counter > 5 ? 'Greater 5' : 'Smaller than 5';
+                }
+            },
+            computed: {
+                output: function() {
+                    return this.counter > 5 ? 'Greater 5' : 'Smaller than 5';
+                }
+            },
+            watch: {
+                counter: function(value) {
+                    var vm = this;
+                    setTimeout(function() {
+                        vm.counter = 0;
+                    }, 2000);
                 }
             }
         })
