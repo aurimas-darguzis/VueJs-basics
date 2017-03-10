@@ -17,14 +17,26 @@
             </template>
             <p v-show="show">Do you also see me?</p>
             <button @click="show = !show">Switch</button>
+
+            <br>
+
+            <ul>
+                <li v-for="ingredient in ingredients">{{ ingredient }}</li>
+            </ul>
         </div>
     </body>
     <script>
         new Vue({
             el: '#app',
             data: {
-                show: true
+                show: true,
+                ingredients: ['meat', 'fruit', 'cookies'],
+                persons: [
+                    {name: 'Aurimas', age: '29', color: 'green'},
+                    {name: 'Anna', age: 'unknown', color: 'blue'}
+                ]
             }
         });
     </script>
 </html>
+
