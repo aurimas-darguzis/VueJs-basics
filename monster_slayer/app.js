@@ -10,6 +10,18 @@ new Vue({
             this.gameIsRunning = true;
             this.playerHealth = 100;
             this.monsterHealth = 100;
+        },
+        attack: function() {
+            console.log('attack');
+        },
+        speacialAttack: function() {
+            console.log('special attack');
+        },
+        heal: function() {
+            console.log('heal');
+        },
+        giveUp: function() {
+            console.log('give up');
         }
     }
 });
