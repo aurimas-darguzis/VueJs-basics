@@ -1,16 +1,26 @@
 new Vue({
-    el: '#app',
-    data: {
-        title: 'The VueJS Instance',
-        showParagraph: false
+  el: '#app',
+  data: {
+    title: 'The VueJS Instance',
+    showParagraph: false
+  },
+  methods: {
+    show: function() {
+      this.showParagraph = true;
+      this.updateTitle('The VueJS Instance (Updated)');
     },
-    methods: {
-        show: function () {
-            this.showParagraph = true;
-            this.udpateTitle('The VueJs Instance (Updated)')
-        },
-        updateTitle: function (title) {
-            this.title = title;
-        }
+    updateTitle: function(title) {
+      this.title = title;
     }
-})
+  },
+  computed: {
+    lowercaseTitle: function() {
+      return this.title.toLowerCase();
+    }
+  },
+  watch: {
+    title: function(value) {
+      alert('Title changed, new value: ' + value);
+    }
+  }
+});
