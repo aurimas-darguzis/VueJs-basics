@@ -4,14 +4,55 @@
         <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="../vue.js"></script>
+        <script src="../vue.js" type="text/javascript"></script>
+        <!--<script scr="./app.js" type="text/javascript"></script>-->
     </head>
     <body>
-        <div id="app">
+        <div id="app1">
             <h1 >{{ title }}</h1>
             <button v-on:click="show">Show Paragraph</button>
             <p v-if="showParagraph">This is not always visible</p>
         </div>
+
+        <div id="app2">
+            <h1 >{{ title }}</h1>
+        </div>
     </body>
-    <script scr="./app.js"></script>
+    
+    <script>
+    new Vue({
+  el: '#app1',
+  data: {
+    title: 'The VueJS Instance',
+    showParagraph: false
+  },
+  methods: {
+    show: function() {
+      this.showParagraph = true;
+      this.updateTitle('The VueJS Instance (Updated)');
+    },
+    updateTitle: function(title) {
+      this.title = title;
+    }
+  },
+  computed: {
+    lowercaseTitle: function() {
+      return this.title.toLowerCase();
+    }
+  },
+  watch: {
+    title: function(value) {
+      alert('Title changed, new value: ' + value);
+    }
+  }
+});
+
+
+new Vue({
+    el: '#app2',
+    data: {
+        title: 'hey mate!'
+    }
+});
+    </script>
 </html>
