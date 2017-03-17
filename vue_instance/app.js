@@ -10,7 +10,7 @@ new Vue({
       this.updateTitle('The VueJS Instance (Updated)');
     },
     updateTitle: function(title) {
-      this.title = title;
+      this.title = title; 
     }
   },
   computed: {
