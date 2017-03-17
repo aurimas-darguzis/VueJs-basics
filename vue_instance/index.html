@@ -21,6 +21,10 @@
 
         <div id="app3">
         </div>
+
+        <div id="app4">
+            <h1>{{ title }}</h1>
+        </div>
     </body>
     
     <script>
@@ -80,5 +84,18 @@
     Vue.component('hello', {
         template: '<h1>Hello</h1>'
     });
+
+    new Vue({
+        el:'#app4',
+        data: {
+            title: 'The VueJS instance'
+        },
+        beforeCreate: function () { 
+            console.log('beforeCreate()');
+        },
+        created: function () {
+            console.log('created');
+        }
+    })
     </script>
 </html>
