@@ -1,1 +1,1 @@
-VueJs basics
+VueJs - The Progressive JavaScript Framework
